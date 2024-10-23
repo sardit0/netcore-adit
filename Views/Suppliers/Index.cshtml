@@ -1,0 +1,70 @@
+@model IEnumerable<Inventaris.Models.Supplier>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Template/Backend.cshtml";
+}
+<h3 class="m-3 text-uppercase">SUPPLIER PAGE</h3>
+<hr>
+<div class="card p-3">
+    <div class="card-body">
+        <a asp-action="Create" class="btn btn-primary">Create New +</a>
+        <table class="table mb-0 table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Supplier Name</th>
+                    <th scope="col" class="text-center">Contact Info</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.SupplierName)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.ContactInfo)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="mdi mdi-table-edit"></i> Edit</a> |
+                            <a href="javascript:;" onclick="confirmDelete('@item.Id')" class="btn btn-danger">
+                                <i class="mdi mdi-delete"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(supplierId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This action cannot be undone!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Suppliers/Delete/' + supplierId;
+            }
+        });
+    }
+</script>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: '@TempData["SuccessMessage"]',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+}
