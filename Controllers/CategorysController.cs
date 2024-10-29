@@ -45,7 +45,6 @@ namespace Inventaris.Controllers
         // GET: Categorys/Create
         public IActionResult Create()
         {
-            TempData["SuccessMessage"] = "Item has been successfully created!";
             return View();
         }
 
@@ -56,12 +55,21 @@ namespace Inventaris.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CategoryName")] Category category)
         {
+
+             if (await _context.Category
+            .AnyAsync(c => c.CategoryName.ToLower() == category.CategoryName.ToLower()))
+    {
+        ModelState.AddModelError("CategoryName", "This category name already exists.");
+    }
+
             if (ModelState.IsValid)
             {
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            TempData["SuccessMessage"] = "Item has been successfully created!";
             return View(category);
         }
 
@@ -78,7 +86,7 @@ namespace Inventaris.Controllers
             {
                 return NotFound();
             }
-            TempData["SuccessMessage"] = "Item has been successfully edited!";
+            
             return View(category);
         }
 
@@ -114,6 +122,8 @@ namespace Inventaris.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            TempData["SuccessMessage"] = "Item has been successfully edited!";
             return View(category);
         }
 

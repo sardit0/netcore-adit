@@ -1,8 +1,92 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+  ViewData["Title"] = "Home Page";
+  Layout = "~/Views/Template/Backend.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@* <div class="text-center">
+<h1 class="display-4">Welcome</h1>
+<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@
+
+
+<div class="row">
+  <div class="col-12 col-xl-12">
+    <div class="card m-3">
+      <div class="card-body p-4">
+        <div class="d-flex flex-row justify-content-center">
+        </div>
+        <center>
+          <div class="d-flex flex-row justify-content-center">
+            <div class="col-6">
+              <h4 class="card-title mt-5">Welcome to Inventory website</h4>
+              <h4 class="card-title mt-2">This is the admin dashboard page</h4>
+            </div>
+          </div>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+   <div class="col-sm-4 grid-margin">
+    <div class="card m-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="d-flex align-items-center align-self-start">
+              <h3 class="mb-0">@ViewBag.CategoryCount</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium"></p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="icon icon-box-primary ">
+              <span class="mdi mdi-sort-variant icon-item"></span>
+            </div>
+          </div>
+        </div>
+        <h6 class="text-muted font-weight-normal">Categorys</h6>
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-4 grid-margin">
+    <div class="card m-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="d-flex align-items-center align-self-start">
+              <h3 class="mb-0">@ViewBag.SupplierCount</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium"></p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="icon icon-box-primary">
+              <span class="mdi mdi-account-box icon-item"></span>
+            </div>
+          </div>
+        </div>
+        <h6 class="text-muted font-weight-normal">Suppliers</h6>
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-4 grid-margin">
+    <div class="card m-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="d-flex align-items-center align-self-start">
+              <h3 class="mb-0">@ViewBag.ItemCount</h3>
+              <p class="text-danger ml-2 mb-0 font-weight-medium"></p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="icon icon-box-primary">
+              <span class="mdi mdi-sitemap icon-item"></span>
+            </div>
+          </div>
+        </div>
+        <h6 class="text-muted font-weight-normal">Items</h6>
+      </div>
+    </div>
+  </div>
 </div>

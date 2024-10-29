@@ -1,20 +1,48 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Inventaris.Data;
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<InventarisContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("InventarisContext") ?? throw new InvalidOperationException("Connection string 'InventarisContext' not found.")));
+using Inventaris.Models;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+
+// Menambahkan DbContext dengan SQLite
+builder.Services.AddDbContext<InventarisContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("InventarisContext") ?? 
+    throw new InvalidOperationException("Connection string 'InventarisContext' not found.")));
+
+// Menambahkan Identity
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<InventarisContext>()
+    .AddDefaultTokenProviders();
+
+// Konfigurasi IdentityOptions
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Konfigurasi Password
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+
+    // Konfigurasi Lockout
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = true;
+
+    // Konfigurasi User
+    options.User.RequireUniqueEmail = true;
+});
+
+// Menambahkan layanan untuk MVC
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Mengonfigurasi HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -23,8 +51,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Menambahkan middleware untuk autentikasi dan otorisasi
+app.UseAuthentication(); // Pastikan ini dipanggil sebelum UseAuthorization
 app.UseAuthorization();
 
+// Mengonfigurasi routing
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

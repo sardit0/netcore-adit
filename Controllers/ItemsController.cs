@@ -51,27 +51,43 @@ namespace Inventaris.Controllers
         {
             ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName");
             ViewData["SupplierId"] = new SelectList(_context.Set<Supplier>(), "Id", "SupplierName");
-            TempData["SuccessMessage"] = "Item has been successfully created!";
             return View();
         }
 
         // POST: Items/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Quantity,Description,DateAdded,CategoryId,SupplierId")] Item item)
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public async Task<IActionResult> Create([Bind("Id,Name,Quantity,Description,DateAdded,ImagePath,CategoryId,SupplierId")] Item item, IFormFile ImagePath)
+                {
+                   if (ModelState.IsValid)
+    {
+        if (ImagePath != null && ImagePath.Length > 0)
         {
-            if (ModelState.IsValid)
+            var fileName = Path.GetFileName(ImagePath.FileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                _context.Add(item);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await ImagePath.CopyToAsync(stream);
             }
-            ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName", item.CategoryId);
-            ViewData["SupplierId"] = new SelectList(_context.Set<Supplier>(), "Id", "SupplierName", item.SupplierId);
-            TempData["SuccessMessage"] = "Item has been successfully created!";
-            return View(item);
+
+            item.ImagePath = "/images/" + fileName;
+        }
+
+        _context.Add(item);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Index"); 
+    }
+
+    ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName", item.CategoryId);
+    ViewData["SupplierId"] = new SelectList(_context.Set<Supplier>(), "Id", "SupplierName", item.SupplierId);
+
+    TempData["SuccessMessage"] = "Item has been successfully created!";
+    return View(item);
+
         }
 
         // GET: Items/Edit/5
@@ -89,46 +105,67 @@ namespace Inventaris.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName", item.CategoryId);
             ViewData["SupplierId"] = new SelectList(_context.Set<Supplier>(), "Id", "SupplierName", item.SupplierId);
-            TempData["SuccessMessage"] = "Item has been successfully edited!";
             return View(item);
         }
 
         // POST: Items/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Quantity,Description,DateAdded,CategoryId,SupplierId")] Item item)
+      [HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Quantity,Description,DateAdded,CategoryId,SupplierId,ImagePath")] Item item, IFormFile ImagePath)
+{
+    if (id != item.Id)
+    {
+        return NotFound();
+    }
+
+    if (ModelState.IsValid)
+    {
+        try
         {
-            if (id != item.Id)
+            if (ImagePath != null && ImagePath.Length > 0)
+            {
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", ImagePath.FileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImagePath.CopyToAsync(stream);
+                }
+
+                item.ImagePath = "/images/" + ImagePath.FileName;
+            }
+            else
+            {
+                var existingItem = await _context.Item.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+                item.ImagePath = existingItem?.ImagePath;
+            }
+            _context.Update(item);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!ItemExists(item.Id))
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            else
             {
-                try
-                {
-                    _context.Update(item);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ItemExists(item.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                throw;
             }
-            ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName", item.CategoryId);
-            ViewData["SupplierId"] = new SelectList(_context.Set<Supplier>(), "Id", "SupplierName", item.SupplierId);
-            return View(item);
         }
+
+        // TempData untuk menampilkan pesan sukses
+        TempData["SuccessMessage"] = "Item has been successfully edited!";
+        return RedirectToAction(nameof(Index));
+    }
+
+    // Jika ada error pada model, kembalikan form dengan data dropdown yang sesuai
+    ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName", item.CategoryId);
+    ViewData["SupplierId"] = new SelectList(_context.Set<Supplier>(), "Id", "SupplierName", item.SupplierId);
+    return View(item);
+}
+
 
         // GET: Items/Delete/5
         public async Task<IActionResult> Delete(int? id)

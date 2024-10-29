@@ -8,26 +8,29 @@
 <hr>
 <div class="card p-3">
     <div class="card-body">
-        <a asp-action="Create" class="btn btn-primary">Create New +</a>
+        <a asp-action="Create" class="btn btn-primary" enctype="multipart/form-data"gggggtttt>Create New +</a>
         <table class="table mb-0 table-striped">
             <thead>
                 <tr>
                     <th scope="col" class="text-center">No</th>
                     <th scope="col">Name</th>
-                    <th scope="col" class="text-center">Quentity</th>
-                    <th scope="col">Descriptions</th>
-                    <th scope="col" class="text-center">Data Add</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col">Description</th>
+                    <th scope="col" class="text-center">Date Added</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Category Name</th>
                     <th scope="col">Supplier Name</th>
                     <th scope="col" class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @{ int i = 1; }
+                @{
+                    int i = 1;
+                }
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@i</td>
+                        <td class="text-center">@i</td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
@@ -38,7 +41,10 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td class="text-center">
-                          @item.DateAdded.ToString("d MMMM yyyy") 
+                            @item.DateAdded.ToString("d MMMM yyyy")
+                        </td>
+                        <td>
+                            <img src="@item.ImagePath" alt="Image" style="width: 100px; height: 100px;" />
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Category.CategoryName)
@@ -47,7 +53,8 @@
                             @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
                         </td>
                         <td class="text-center">
-                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="mdi mdi-table-edit"></i> Edit</a> |
+                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i
+                                    class="mdi mdi-table-edit"></i> Edit</a> |
                             <a href="javascript:;" onclick="confirmDelete('@item.Id')" class="btn btn-danger">
                                 <i class="mdi mdi-delete"></i> Delete
                             </a>
@@ -60,9 +67,8 @@
     </div>
 </div>
 
-
 <script>
-    function confirmDelete(supplierId) {
+    function confirmDelete(itemId) {
         Swal.fire({
             title: 'Are you sure?',
             text: "This action cannot be undone!",

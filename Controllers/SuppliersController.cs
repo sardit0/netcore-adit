@@ -46,7 +46,6 @@ namespace Inventaris.Controllers
         // GET: Suppliers/Create
         public IActionResult Create()
         {
-            TempData["SuccessMessage"] = "Item has been successfully created!";
             return View();
         }
 
@@ -57,12 +56,22 @@ namespace Inventaris.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,SupplierName,ContactInfo")] Supplier supplier)
         {
+
+            if (await _context.Supplier
+            .AnyAsync(c => c.ContactInfo.ToLower() == supplier.ContactInfo.ToLower()))
+    {
+        ModelState.AddModelError("ContactInfo", "This supplier contact info already exists.");
+    }
+
             if (ModelState.IsValid)
             {
                 _context.Add(supplier);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }            return View(supplier);
+            }
+
+            TempData["SuccessMessage"] = "Item has been successfully created!";
+            return View(supplier);
         }
 
         // GET: Suppliers/Edit/5
@@ -78,8 +87,7 @@ namespace Inventaris.Controllers
             {
                 return NotFound();
             }
-    
-            TempData["SuccessMessage"] = "Item has been successfully edited!";
+
             return View(supplier);
         }
 
@@ -115,6 +123,7 @@ namespace Inventaris.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            TempData["SuccessMessage"] = "Item has been successfully edited!";
             return View(supplier);
         }
 

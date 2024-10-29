@@ -3597,6 +3597,42 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\01-60-01 Portrait_11zon.jpg",
+      "PackagePath": "staticwebassets\\images\\01-60-01 Portrait_11zon.jpg"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\01-60-05 Landscape_11zon.jpg",
+      "PackagePath": "staticwebassets\\images\\01-60-05 Landscape_11zon.jpg"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\01-60-05 Potrait_11zon.jpg",
+      "PackagePath": "staticwebassets\\images\\01-60-05 Potrait_11zon.jpg"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\05-Victor_Poster Lanscape (1)_11zon.png",
+      "PackagePath": "staticwebassets\\images\\05-Victor_Poster Lanscape (1)_11zon.png"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\05-Victor_Poster Potrait (1)_11zon (1).png",
+      "PackagePath": "staticwebassets\\images\\05-Victor_Poster Potrait (1)_11zon (1).png"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\Infografis_RHT PKN 1_page-0001 (1).jpg",
+      "PackagePath": "staticwebassets\\images\\Infografis_RHT PKN 1_page-0001 (1).jpg"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\POSTER HOLISTIK FINAL (LANDSCAPE)-dr.NARIYANA M.Kes (1).jpg",
+      "PackagePath": "staticwebassets\\images\\POSTER HOLISTIK FINAL (LANDSCAPE)-dr.NARIYANA M.Kes (1).jpg"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\WIN_20240913_09_43_40_Pro.jpg",
+      "PackagePath": "staticwebassets\\images\\WIN_20240913_09_43_40_Pro.jpg"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\images\\list_kategori_page.png",
+      "PackagePath": "staticwebassets\\images\\list_kategori_page.png"
+    },
+    {
       "Id": "D:\\sardit\\dotnet\\Inventaris\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

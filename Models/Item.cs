@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema; 
 namespace Inventaris.Models
 {
     public class Item
@@ -9,6 +11,7 @@ namespace Inventaris.Models
         
         public string Description { get; set; } = string.Empty;
         public DateTime DateAdded { get; set; } = DateTime.Now;
+        public string? ImagePath { get; set; }
 
         //relasi ka kategroi
         public int CategoryId { get; set; }
@@ -18,6 +21,5 @@ namespace Inventaris.Models
         public int SupplierId { get; set; }
         public Supplier? Supplier { get; set; }
 
-        // public string Image { get; set; } = string.Empty;
     }
 }

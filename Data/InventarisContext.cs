@@ -4,18 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Inventaris.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Inventaris.Data
 {
-    public class InventarisContext : DbContext
+    public class InventarisContext : IdentityDbContext<ApplicationUser>
     {
-        public InventarisContext (DbContextOptions<InventarisContext> options)
+        public InventarisContext(DbContextOptions<InventarisContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Inventaris.Models.Item> Item { get; set; } = default!;
-        public DbSet<Inventaris.Models.Category> Category { get; set; } = default!;
-        public DbSet<Inventaris.Models.Supplier> Supplier { get; set; } = default!;
+        public DbSet<Item> Item { get; set; } = default!;
+        public DbSet<Category> Category { get; set; } = default!;
+        public DbSet<Supplier> Supplier { get; set; } = default!;
     }
 }
