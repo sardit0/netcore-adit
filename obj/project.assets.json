@@ -7969,6 +7969,7 @@
     "net8.0": [
       "Auth0.AspNetCore.Authentication >= 1.4.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.10",
+      "Microsoft.EntityFrameworkCore >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
       "Microsoft.EntityFrameworkCore.SQLite >= 8.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.10",
@@ -7982,11 +7983,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj",
+      "projectUniqueName": "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj",
       "projectName": "Inventaris",
-      "projectPath": "d:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj",
+      "projectPath": "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "d:\\sardit\\dotnet\\Inventaris\\obj\\",
+      "outputPath": "D:\\sardit\\dotnet\\inventaris\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -8023,6 +8024,10 @@
             "version": "[1.4.1, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[8.0.10, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.10, )"
           },

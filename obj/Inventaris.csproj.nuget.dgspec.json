@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj": {}
+    "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj": {}
   },
   "projects": {
-    "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj": {
+    "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj",
+        "projectUniqueName": "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj",
         "projectName": "Inventaris",
-        "projectPath": "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj",
+        "projectPath": "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\sardit\\dotnet\\Inventaris\\obj\\",
+        "outputPath": "D:\\sardit\\dotnet\\inventaris\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -48,6 +48,10 @@
               "version": "[1.4.1, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.10, )"
             },

@@ -10,6 +10,7 @@
         "dependencies": {
           "Auth0.AspNetCore.Authentication": "1.4.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.10",
+          "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.Design": "8.0.10",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10",

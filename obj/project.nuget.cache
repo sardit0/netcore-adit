@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o4GC5M0M4Hs=",
+  "dgSpecHash": "J2GAknXyDAI=",
   "success": true,
-  "projectFilePath": "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj",
+  "projectFilePath": "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\auth0.aspnetcore.authentication\\1.4.1\\auth0.aspnetcore.authentication.1.4.1.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

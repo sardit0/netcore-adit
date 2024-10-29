@@ -56,6 +56,9 @@
                 </div>
             </div>
         </li> *@
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
          <li class="nav-item menu-items">
             <a class="nav-link" asp-controller="Home" asp-action="index">
               <span class="menu-icon">
@@ -64,10 +67,7 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-        <li class="nav-item nav-category">
-            <span class="nav-link">Navigation</span>
-        </li>
-        <li class="nav-item menu-items">
+        @* <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
                     <i class="mdi mdi-table"></i>
@@ -83,6 +83,33 @@
                     </li>
                 </ul>
             </div>
+        </li> *@
+         <li class="nav-item nav-category">
+            <span class="nav-link">More Table</span>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" asp-action="index" asp-controller="Categorys">
+              <span class="menu-icon">
+                <i class="mdi mdi-sort-variant"></i>
+              </span>
+              <span class="menu-title">Category</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" asp-action="index" asp-controller="Suppliers">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-box"></i>
+              </span>
+              <span class="menu-title">Supplier</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" asp-action="index" asp-controller="Items">
+              <span class="menu-icon">
+                <i class="mdi mdi-sitemap"></i>
+              </span>
+              <span class="menu-title">Item</span>
+            </a>
+          </li>
     </ul>
 </nav>

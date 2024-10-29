@@ -12,16 +12,21 @@
         <table class="table mb-0 table-striped">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Supplier Name</th>
+                    <th scope="col" class="text-center">No</th>
+                    <th scope="col">Supplier Name</th>
                     <th scope="col" class="text-center">Contact Info</th>
                     <th scope="col" class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
+                 @{
+                    int i = 1;
+                }
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center">@i</td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.SupplierName)
                         </td>
                         <td class="text-center">
@@ -34,6 +39,7 @@
                             </a>
                         </td>
                     </tr>
+                    i++;
                 }
             </tbody>
         </table>
