@@ -62,33 +62,54 @@ namespace Inventaris.Controllers
                 public async Task<IActionResult> Create([Bind("Id,Name,Quantity,Description,DateAdded,ImagePath,CategoryId,SupplierId")] Item item, IFormFile ImagePath)
                 {
                    if (ModelState.IsValid)
-    {
-        if (ImagePath != null && ImagePath.Length > 0)
-        {
-            var fileName = Path.GetFileName(ImagePath.FileName);
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                    {
+                        // if (ImagePath != null && ImagePath.Length > 0)
+                        // {
+                        //     var fileName = Path.GetFileName(ImagePath.FileName);
+                        //     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await ImagePath.CopyToAsync(stream);
-            }
+                        //     using (var stream = new FileStream(filePath, FileMode.Create))
+                        //     {
+                        //         await ImagePath.CopyToAsync(stream);
+                        //     }
 
-            item.ImagePath = "/images/" + fileName;
-        }
+                        //     item.ImagePath = "/images/" + fileName;
+                        // }
 
-        _context.Add(item);
-        await _context.SaveChangesAsync();
+                            if (ImagePath != null && ImagePath.Length > 0)
+                            {
+                                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp" };
+                                var fileExtension = Path.GetExtension(ImagePath.FileName).ToLower();
 
-        return RedirectToAction("Index"); 
-    }
+                                if (!allowedExtensions.Contains(fileExtension))
+                                {
+                                    throw new Exception("Only image files are allowed.");
+                                }
 
-    ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName", item.CategoryId);
-    ViewData["SupplierId"] = new SelectList(_context.Set<Supplier>(), "Id", "SupplierName", item.SupplierId);
+                                var fileName = Path.GetFileName(ImagePath.FileName);
+                                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
 
-    TempData["SuccessMessage"] = "Item has been successfully created!";
-    return View(item);
+                                using (var stream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    await ImagePath.CopyToAsync(stream);
+                                }
 
-        }
+                                item.ImagePath = "/images/" + fileName;
+                            }
+
+                        _context.Add(item);
+                        await _context.SaveChangesAsync();
+
+                        return RedirectToAction("Index"); 
+                    }
+
+                    ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName", item.CategoryId);
+                    ViewData["SupplierId"] = new SelectList(_context.Set<Supplier>(), "Id", "SupplierName", item.SupplierId);
+
+                    TempData["SuccessMessage"] = "Item has been successfully created!";
+                    return View(item);
+
+                        }
 
         // GET: Items/Edit/5
         public async Task<IActionResult> Edit(int? id)
