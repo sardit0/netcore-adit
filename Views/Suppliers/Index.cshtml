@@ -16,6 +16,8 @@
                     <th scope="col">Supplier Name</th>
                     <th scope="col" class="text-center">Contact Info</th>
                     <th scope="col" class="text-center">Actions</th>
+                    @* <th scope="col" class="text-center">Created At</th>
+                    <th scope="col" class="text-center">Updated At</th> *@
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +40,12 @@
                                 <i class="mdi mdi-delete"></i> Delete
                             </a>
                         </td>
+                        @* <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.UpdatedAt)
+                        </td> *@
                     </tr>
                     i++;
                 }

@@ -289,3 +289,6 @@ D:\sardit\dotnet\Inventaris\obj\Debug\net8.0\refint\Inventaris.dll
 D:\sardit\dotnet\Inventaris\obj\Debug\net8.0\Inventaris.pdb
 D:\sardit\dotnet\Inventaris\obj\Debug\net8.0\Inventaris.genruntimeconfig.cache
 D:\sardit\dotnet\Inventaris\obj\Debug\net8.0\ref\Inventaris.dll
+D:\sardit\dotnet\Inventaris\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\sardit\dotnet\Inventaris\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\sardit\dotnet\Inventaris\obj\Debug\net8.0\Inventaris.MvcApplicationPartsAssemblyInfo.cs

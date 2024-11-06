@@ -15,8 +15,8 @@
                     <th scope="col" class="text-center">No</th>
                     <th scope="col">Category Name</th>
                     <th scope="col" class="text-center">Actions</th>
-                    <th scope="col" class="text-center">Created At</th>
-                    @* <th scope="col" class="text-center">Updated At</th> *@
+                    @* <th scope="col" class="text-center">Created At</th>
+                    <th scope="col" class="text-center">Updated At</th> *@
                 </tr>
             </thead>
             <tbody>
@@ -31,15 +31,15 @@
                             @Html.DisplayFor(modelItem => item.CategoryName)
                         </td>
                         <td class="text-center">
-                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="mdi mdi-table-edit"></i> Edit</a> |
+                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="mdi mdi-table-edit"></i> Edit</a> | 
                             <a href="javascript:;" onclick="confirmDelete('@item.Id')" class="btn btn-danger">
                                 <i class="mdi mdi-delete"></i> Delete
                             </a>
                         </td>
-                        <td class="text-center">
+                        @* <td class="text-center">
                             @Html.DisplayFor(modelItem => item.CreatedAt)
                         </td>
-                        @* <td class="text-center">
+                        <td class="text-center">
                             @Html.DisplayFor(modelItem => item.UpdateAt)
                         </td> *@
                     </tr>

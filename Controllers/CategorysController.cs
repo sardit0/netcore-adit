@@ -64,6 +64,10 @@ namespace Inventaris.Controllers
 
             if (ModelState.IsValid)
             {
+
+                category.CreatedAt = DateTime.UtcNow;
+                category.UpdateAt = DateTime.UtcNow;
+
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -102,16 +106,25 @@ namespace Inventaris.Controllers
                 return NotFound();
             }
 
+            var categoryUpdateAt = await _context.Category.FindAsync(id);
+            if (categoryUpdateAt == null)
+            {
+                return NotFound();
+            }
+
+            categoryUpdateAt.CategoryName = category.CategoryName;
+            categoryUpdateAt.UpdateAt = DateTime.UtcNow;
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(categoryUpdateAt);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.Id))
+                    if (!CategoryExists(categoryUpdateAt.Id))
                     {
                         return NotFound();
                     }

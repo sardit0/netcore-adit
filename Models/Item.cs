@@ -13,6 +13,7 @@ namespace Inventaris.Models
         public DateTime DateAdded { get; set; } = DateTime.Now;
         public string? ImagePath { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         //relasi ka kategroi
         public int CategoryId { get; set; }

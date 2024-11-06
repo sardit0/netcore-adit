@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Inventaris.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Inventaris.Data
 {
-    public class InventarisContext : IdentityDbContext<ApplicationUser>
+    public class InventarisContext : IdentityDbContext
     {
         public InventarisContext(DbContextOptions<InventarisContext> options)
             : base(options)

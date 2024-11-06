@@ -65,6 +65,10 @@ namespace Inventaris.Controllers
 
             if (ModelState.IsValid)
             {
+
+                supplier.CreatedAt = DateTime.UtcNow;
+                supplier.UpdatedAt = DateTime.UtcNow;
+
                 _context.Add(supplier);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -103,16 +107,26 @@ namespace Inventaris.Controllers
                 return NotFound();
             }
 
+             var supplierUpdatedAt = await _context.Supplier.FindAsync(id);
+            if (supplierUpdatedAt == null)
+            {
+                return NotFound();
+            }
+
+            supplierUpdatedAt.SupplierName = supplier.SupplierName;
+            supplierUpdatedAt.ContactInfo = supplier.ContactInfo;
+            supplierUpdatedAt.UpdatedAt = DateTime.UtcNow;
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(supplier);
+                    _context.Update(supplierUpdatedAt);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SupplierExists(supplier.Id))
+                    if (!SupplierExists(supplierUpdatedAt.Id))
                     {
                         return NotFound();
                     }
