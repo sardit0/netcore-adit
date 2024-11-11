@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj": {}
+    "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj": {}
   },
   "projects": {
-    "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj": {
+    "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj",
+        "projectUniqueName": "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj",
         "projectName": "Inventaris",
-        "projectPath": "D:\\sardit\\dotnet\\inventaris\\Inventaris.csproj",
+        "projectPath": "D:\\sardit\\dotnet\\Inventaris\\Inventaris.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\sardit\\dotnet\\inventaris\\obj\\",
+        "outputPath": "D:\\sardit\\dotnet\\Inventaris\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"

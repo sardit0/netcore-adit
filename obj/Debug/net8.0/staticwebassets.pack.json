@@ -3601,6 +3601,14 @@
       "PackagePath": "staticwebassets\\images\\01-60-01 Portrait_11zon.jpg"
     },
     {
+      "Id": "D:\\sardit\\dotnet\\inventaris\\wwwroot\\images\\01-60-02 Portrait_11zon.jpg",
+      "PackagePath": "staticwebassets\\images\\01-60-02 Portrait_11zon.jpg"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\inventaris\\wwwroot\\images\\01-60-03 Landscape_11zon.jpg",
+      "PackagePath": "staticwebassets\\images\\01-60-03 Landscape_11zon.jpg"
+    },
+    {
       "Id": "D:\\sardit\\dotnet\\inventaris\\wwwroot\\images\\01-60-05 Landscape_11zon.jpg",
       "PackagePath": "staticwebassets\\images\\01-60-05 Landscape_11zon.jpg"
     },
@@ -3611,6 +3619,10 @@
     {
       "Id": "D:\\sardit\\dotnet\\inventaris\\wwwroot\\images\\05-Victor_Infografis.png",
       "PackagePath": "staticwebassets\\images\\05-Victor_Infografis.png"
+    },
+    {
+      "Id": "D:\\sardit\\dotnet\\inventaris\\wwwroot\\images\\05-Victor_Poster Lanscape (1).png",
+      "PackagePath": "staticwebassets\\images\\05-Victor_Poster Lanscape (1).png"
     },
     {
       "Id": "D:\\sardit\\dotnet\\inventaris\\wwwroot\\images\\05-Victor_Poster Lanscape (1)_11zon.png",

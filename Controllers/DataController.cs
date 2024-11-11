@@ -12,27 +12,28 @@ using Inventaris.Models;
 namespace Inventaris.Controllers
 {
     [Authorize]
-    public class CategorysController : Controller
+
+    public class DataController : Controller
     {
         private readonly InventarisContext _context;
 
-        public CategorysController(InventarisContext context)
+        public DataController(InventarisContext context)
         {
             _context = context;
         }
 
-        // GET: Categorys
+        // GET: Data
         public async Task<IActionResult> Index()
         {
-            var categories = await _context.Category
-                                        .OrderByDescending(c => c.Id) 
+            var datapusat = await _context.Datapusat
+                                        .OrderByDescending(d => d.Id) 
                                         .ToListAsync();
 
-            return View(categories);
+            return View(datapusat);
         }
 
 
-        // GET: Categorys/Details/5
+        // GET: Data/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -40,51 +41,39 @@ namespace Inventaris.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var datapusat = await _context.Datapusat
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (datapusat == null)
             {
                 return NotFound();
             }
-            return View(category);
+
+            return View(datapusat);
         }
 
-        // GET: Categorys/Create
+        // GET: Data/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categorys/Create
+        // POST: Data/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryName")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,Name,Stock,Merek")] Datapusat datapusat)
         {
-
-             if (await _context.Category
-            .AnyAsync(c => c.CategoryName.ToLower() == category.CategoryName.ToLower()))
-    {
-        ModelState.AddModelError("CategoryName", "This category name already exists.");
-    }
-
             if (ModelState.IsValid)
             {
-
-                category.CreatedAt = DateTime.UtcNow;
-                category.UpdateAt = DateTime.UtcNow;
-
-                _context.Add(category);
+                _context.Add(datapusat);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            TempData["SuccessMessage"] = "Item has been successfully created!";
-            return View(category);
+            return View(datapusat);
         }
 
-        // GET: Categorys/Edit/5
+        // GET: Data/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,46 +81,36 @@ namespace Inventaris.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
+            var datapusat = await _context.Datapusat.FindAsync(id);
+            if (datapusat == null)
             {
                 return NotFound();
             }
-            
-            return View(category);
+            return View(datapusat);
         }
 
-        // POST: Categorys/Edit/5
+        // POST: Data/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryName")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Stock,Merek")] Datapusat datapusat)
         {
-            if (id != category.Id)
+            if (id != datapusat.Id)
             {
                 return NotFound();
             }
-
-            var categoryUpdateAt = await _context.Category.FindAsync(id);
-            if (categoryUpdateAt == null)
-            {
-                return NotFound();
-            }
-
-            categoryUpdateAt.CategoryName = category.CategoryName;
-            categoryUpdateAt.UpdateAt = DateTime.UtcNow;
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(categoryUpdateAt);
+                    _context.Update(datapusat);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(categoryUpdateAt.Id))
+                    if (!DatapusatExists(datapusat.Id))
                     {
                         return NotFound();
                     }
@@ -142,12 +121,10 @@ namespace Inventaris.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            TempData["SuccessMessage"] = "Item has been successfully edited!";
-            return View(category);
+            return View(datapusat);
         }
 
-        // GET: Categorys/Delete/5
+        // GET: Data/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -155,34 +132,34 @@ namespace Inventaris.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var datapusat = await _context.Datapusat
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (datapusat == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(datapusat);
         }
 
-        // POST: Categorys/Delete/5
+        // POST: Data/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            if (category != null)
+            var datapusat = await _context.Datapusat.FindAsync(id);
+            if (datapusat != null)
             {
-                _context.Category.Remove(category);
+                _context.Datapusat.Remove(datapusat);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool DatapusatExists(int id)
         {
-            return _context.Category.Any(e => e.Id == id);
+            return _context.Datapusat.Any(e => e.Id == id);
         }
     }
 }

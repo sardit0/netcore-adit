@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using Inventaris.Data;
 using Inventaris.Models;
 
 namespace Inventaris.Controllers
 {
+    [Authorize]
+    
     public class SuppliersController : Controller
     {
         private readonly InventarisContext _context;
@@ -22,8 +25,13 @@ namespace Inventaris.Controllers
         // GET: Suppliers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Supplier.ToListAsync());
+            var suppliers = await _context.Supplier
+                                        .OrderByDescending(s => s.Id) 
+                                        .ToListAsync();
+
+            return View(suppliers);
         }
+
 
         // GET: Suppliers/Details/5
         public async Task<IActionResult> Details(int? id)

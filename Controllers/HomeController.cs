@@ -1,10 +1,13 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Inventaris.Models;
 using Inventaris.Data;
 
 namespace Inventaris.Controllers
 {
+    [Authorize]
+
     public class HomeController : Controller
     {
         private readonly InventarisContext _context;

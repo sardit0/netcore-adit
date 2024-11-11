@@ -1,0 +1,134 @@
+@model IEnumerable<Inventaris.Models.Datapusat>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Template/Backend.cshtml";
+
+}
+@* 
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Merek)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Merek)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                @* <a asp-action="Details" asp-route-id="@item.Id">Details</a> | 
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@
+
+<h3 class="m-3 text-uppercase">CENTRAL DATA PAGE</h3>
+    <hr>
+<div class="card p-3">
+    <div class="card-body">
+        <a asp-action="Create" class="btn btn-primary">Create New +</a>
+        <table class="table mb-0 table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">No</th>
+                    <th scope="col" class="text-center">Name</th>
+                    <th scope="col" class="text-center">Stock</th>
+                    <th scope="col" class="text-center">Brand</th>
+                    <th scope="col" class="text-center">Actions</th>
+                    @* <th scope="col" class="text-center">Created At</th>
+                    <th scope="col" class="text-center">Updated At</th> *@
+                </tr>
+            </thead>
+            <tbody>
+                 @{
+                    int i = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@i</td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Stock)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Merek)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="mdi mdi-table-edit"></i> Edit</a> | 
+                            <a href="javascript:;" onclick="confirmDelete('@item.Id')" class="btn btn-danger">
+                                <i class="mdi mdi-delete"></i> Delete
+                            </a>
+                        </td>
+                        @* <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.UpdateAt)
+                        </td> *@
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    function confirmDelete(dataId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This action cannot be undone!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Data/Delete/' + dataId;
+            }
+        });
+    }
+</script>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: '@TempData["SuccessMessage"]',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+}
+

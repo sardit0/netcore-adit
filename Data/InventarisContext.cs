@@ -19,5 +19,6 @@ namespace Inventaris.Data
         public DbSet<Item> Item { get; set; } = default!;
         public DbSet<Category> Category { get; set; } = default!;
         public DbSet<Supplier> Supplier { get; set; } = default!;
+        public DbSet<Inventaris.Models.Datapusat> Datapusat { get; set; } = default!;
     }
 }

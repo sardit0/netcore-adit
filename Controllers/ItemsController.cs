@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using Inventaris.Data;
 using Inventaris.Models;
 
 namespace Inventaris.Controllers
 {
+    [Authorize]
     public class ItemsController : Controller
     {
         private readonly InventarisContext _context;
@@ -22,7 +24,10 @@ namespace Inventaris.Controllers
         // GET: Items
         public async Task<IActionResult> Index()
         {
-            var inventarisContext = _context.Item.Include(i => i.Category).Include(i => i.Supplier);
+                var inventarisContext = _context.Item
+                                    .Include(i => i.Category)
+                                    .Include(i => i.Supplier)
+                                    .OrderByDescending(i => i.Id);
             return View(await inventarisContext.ToListAsync());
         }
 
